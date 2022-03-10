@@ -54,7 +54,7 @@ public class Torrent: Codable, Mergeable, CustomStringConvertible {
 			case .stopped: return "Stopped"
 			case .checkWait: return "Waiting to Check"
 			case .checking: return "Checking"
-			case .downloadWait: return "Waiting to Download"
+			case .downloadWait: return "Queued for Download"
 			case .downloading: return "Downloading"
 			case .seedWait: return "Waiting to Seed"
 			case .seeding: return "Seeding"
