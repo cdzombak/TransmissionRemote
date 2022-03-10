@@ -9,7 +9,14 @@ class AddLinkController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: Load link from clipboard if possible
+        
+        let pbContent = NSPasteboard.general.string(forType: .string)
+        if let pbContent = pbContent {
+            if isValid(url: pbContent) {
+                self.linkField.stringValue = pbContent
+                self.linkField.selectText(nil)
+            }
+        }
     }
     
     // MARK: - Actions
