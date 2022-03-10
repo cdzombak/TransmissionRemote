@@ -83,6 +83,8 @@ public extension NSTableView {
             if !changeset.elementMoved.isEmpty {
                 var movesSorted = changeset.elementMoved.sorted { $0.target.element < $1.target.element  }
                 for (index, _) in movesSorted.enumerated() {
+                    // ..< is a half-open range
+                    // ... is a closed range
                     if movesSorted[index].source.element >= movesSorted[index].target.element { // moving up
                         for i in index + 1 ..< movesSorted.count {
                             if movesSorted[index].target.element ... movesSorted[index].source.element ~= movesSorted[i].source.element {
@@ -90,8 +92,11 @@ public extension NSTableView {
                             }
                         }
                     } else { // moving down
-                        // It's unclear, is such moves even possible in DifferenceKit or not
-                        fatalError("Moving down is not implemented")
+                        for i in 0 ..< index {
+                            if movesSorted[index].source.element ... movesSorted[index].target.element ~= movesSorted[i].source.element {
+                                movesSorted[i].source = ElementPath(element: movesSorted[i].source.element - 1, section: movesSorted[i].source.section)
+                            }
+                        }
                     }
                 }
                 
