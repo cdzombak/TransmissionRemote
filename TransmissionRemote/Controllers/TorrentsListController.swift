@@ -44,7 +44,8 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
             .addedDate: { $0.addedDate < $1.addedDate },
             .activityDate: { $0.activityDate < $1.activityDate },
             .uploaded: { $0.uploadedEver < $1.uploadedEver },
-            .downloaded: { $0.downloadedEver < $1.downloadedEver }
+            .downloaded: { $0.downloadedEver < $1.downloadedEver },
+            .status: { $0.status < $1.status }
         ])
         
         self.setupColumns()
