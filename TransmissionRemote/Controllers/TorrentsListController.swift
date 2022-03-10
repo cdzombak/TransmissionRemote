@@ -74,11 +74,7 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
 //					&& replace.newItem.isFinished()
 //					&& !replace.oldItem.isFinished()
 //				{
-//						if #available(OSX 10.14, *) {
-//							UNUserNotificationCenter.current().showDownloadedNotification(for: replace.newItem)
-//						} else {
-//							// TODO: Implement fallback behavior for 10.13- systems
-//						}
+//					UNUserNotificationCenter.current().showDownloadedNotification(for: replace.newItem)
 //				}
 //			}
 //		}
