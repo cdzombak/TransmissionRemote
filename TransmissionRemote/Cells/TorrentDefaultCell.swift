@@ -82,6 +82,9 @@ class TorrentCell: ConfigurableCell<Torrent> {
             formatter.countStyle = .file
             self.textField?.stringValue = formatter.string(fromByteCount: torrent.downloadedEver)
             break
+        case .status:
+            self.textField?.stringValue = torrent.getStatus().description
+            break
         default:
             self.textField?.stringValue = ""
             break

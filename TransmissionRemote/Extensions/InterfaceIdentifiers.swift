@@ -13,6 +13,7 @@ extension NSUserInterfaceItemIdentifier {
     static let ratio = NSUserInterfaceItemIdentifier(rawValue: "Ratio")
     static let priority = NSUserInterfaceItemIdentifier(rawValue: "Priority")
     static let queuePosition = NSUserInterfaceItemIdentifier(rawValue: "QueuePosition")
+    static let status = NSUserInterfaceItemIdentifier(rawValue: "Status")
     static let seedingTime = NSUserInterfaceItemIdentifier(rawValue: "SeedingTime")
     static let addedDate = NSUserInterfaceItemIdentifier(rawValue: "AddedDate")
     static let activityDate = NSUserInterfaceItemIdentifier(rawValue: "ActivityDate")
