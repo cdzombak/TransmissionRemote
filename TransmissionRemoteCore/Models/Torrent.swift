@@ -52,11 +52,11 @@ public class Torrent: Codable, Mergeable, CustomStringConvertible {
         public var description: String {
 			switch self {
 			case .stopped: return "Stopped"
-			case .checkWait: return "Waiting check"
+			case .checkWait: return "Waiting to Check"
 			case .checking: return "Checking"
-			case .downloadWait: return "Waiting donload"
-			case .downloading: return "Dowloading"
-			case .seedWait: return "Waiting seeding"
+			case .downloadWait: return "Waiting to Download"
+			case .downloading: return "Downloading"
+			case .seedWait: return "Waiting to Seed"
 			case .seeding: return "Seeding"
 			}
 		}
