@@ -832,18 +832,25 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" id="oKG-S1-eBW">
                                         <rect key="frame" x="0.0" y="14" width="53" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="popUpButtonCell:9fo-jJ-MCK:image" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="N3x-oz-PIB" id="eZ6-o0-Ihz">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="remove" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="N3x-oz-PIB" id="eZ6-o0-Ihz">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="7Bn-1P-tRt">
                                                 <items>
                                                     <menuItem state="on" image="remove" hidden="YES" id="1gu-e9-e0d"/>
                                                     <menuItem title="Remove torrent" id="a6Z-fi-ezi">
+                                                        <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                                         <connections>
                                                             <action selector="removeTorrent:" target="B8D-0N-5wS" id="eMK-L3-RlO"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Remove torrent and delete data" id="N3x-oz-PIB">
+                                                        <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="removeTorrentAndData:" target="B8D-0N-5wS" id="MJo-ER-JjC"/>
                                                         </connections>
@@ -2664,7 +2671,7 @@
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Ajz-YY-U2y">
-                        <rect key="frame" x="0.0" y="0.0" width="1689" height="175"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1689" height="150"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
@@ -3361,6 +3368,7 @@
                         <outlet property="renameItem" destination="imJ-tj-Gg2" id="MVM-Gw-z8H"/>
                         <outlet property="revealInFinderItem" destination="Y3j-Lj-onE" id="hLe-j5-XNs"/>
                         <outlet property="startMenuItem" destination="BHz-rz-7Ed" id="3qG-q8-pHz"/>
+                        <outlet property="startNowMenuItem" destination="eBi-Wb-Aq4" id="OmV-AU-3kM"/>
                         <outlet property="stopMenuItem" destination="dZv-bi-q8V" id="rVx-mx-1tC"/>
                         <outlet property="tableView" destination="HUT-rt-KUV" id="mBW-h1-0Yt"/>
                     </connections>
@@ -3381,14 +3389,17 @@
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="Gb9-q1-mBA"/>
-                        <menuItem title="Start" image="play" tag="1" id="BHz-rz-7Ed">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Start" image="play" tag="1" keyEquivalent="s" allowsKeyEquivalentWhenHidden="YES" id="BHz-rz-7Ed">
                             <connections>
                                 <action selector="startSelected:" target="kH5-bb-4fW" id="mlT-OQ-IpN"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Stop" image="stop" tag="3" id="dZv-bi-q8V">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                        <menuItem title="Start Now" image="forward.fill" catalog="system" tag="1" keyEquivalent="S" allowsKeyEquivalentWhenHidden="YES" id="eBi-Wb-Aq4">
+                            <connections>
+                                <action selector="startSelectedNow:" target="kH5-bb-4fW" id="dbU-bb-NUb"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Stop" image="stop" tag="3" keyEquivalent="." allowsKeyEquivalentWhenHidden="YES" id="dZv-bi-q8V">
                             <connections>
                                 <action selector="stopSelected:" target="kH5-bb-4fW" id="N2C-IK-l1A"/>
                             </connections>
@@ -3402,7 +3413,7 @@ CA
                                 <action selector="removeSelected:" target="kH5-bb-4fW" id="T9v-6Q-nUT"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Remove with data" image="remove" tag="5" id="gp4-Lc-EPf">
+                        <menuItem title="Remove and delete data" image="remove" tag="5" id="gp4-Lc-EPf">
                             <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
@@ -3465,6 +3476,7 @@ CA
         <image name="NSStatusPartiallyAvailable" width="16" height="16"/>
         <image name="NSStatusUnavailable" width="16" height="16"/>
         <image name="bottom_panel" width="20" height="19"/>
+        <image name="forward.fill" catalog="system" width="19" height="12"/>
         <image name="hide-details" width="15" height="12"/>
         <image name="left_panel" width="20" height="19"/>
         <image name="play" width="20" height="19"/>

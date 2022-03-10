@@ -7,6 +7,7 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var startMenuItem: NSMenuItem!
+    @IBOutlet weak var startNowMenuItem: NSMenuItem!
     @IBOutlet weak var stopMenuItem: NSMenuItem!
     @IBOutlet weak var revealInFinderItem: NSMenuItem!
     @IBOutlet weak var renameItem: NSMenuItem!
@@ -180,6 +181,14 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     @IBAction func startSelected(_ sender: NSMenuItem) {
         let ids = self.contextMenuTorrents().map { $0.id }
         Api.startTorrents(by: ids).catch { error in
+            print("Error starting torrents: \(error)")
+        }
+        Service.shared.updateTorrents()
+    }
+    
+    @IBAction func startSelectedNow(_ sender: NSMenuItem) {
+        let ids = self.contextMenuTorrents().map { $0.id }
+        Api.startTorrentsNow(by: ids).catch { error in
             print("Error starting torrents: \(error)")
         }
         Service.shared.updateTorrents()
