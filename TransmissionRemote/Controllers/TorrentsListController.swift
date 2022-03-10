@@ -12,6 +12,8 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     @IBOutlet weak var revealInFinderItem: NSMenuItem!
     @IBOutlet weak var renameItem: NSMenuItem!
     
+    weak var actionDelegate: TorrentActionsDelegate!
+    
     var torrentsDS: CollectionArrayDataSource<Torrent>?
 
     override func viewDidLoad() {
@@ -181,43 +183,23 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     // MARK: - Context menu actions
     
     @IBAction func startSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.startTorrents(by: ids).catch { error in
-            print("Error starting torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.actionDelegate.startTorrents(self.contextMenuTorrents())
     }
     
     @IBAction func startSelectedNow(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.startTorrentsNow(by: ids).catch { error in
-            print("Error starting torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.actionDelegate.startTorrentsNow(self.contextMenuTorrents())
     }
     
     @IBAction func stopSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.stopTorrents(by: ids).catch { error in
-            print("Error stopping torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.actionDelegate.stopTorrents(self.contextMenuTorrents())
     }
     
     @IBAction func removeSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.removeTorrents(by: ids, deleteData: false).catch { error in
-            print("Error removing torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.actionDelegate.removeTorrents(self.contextMenuTorrents(), andData: false)
     }
     
     @IBAction func removeWithDataSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.removeTorrents(by: ids, deleteData: true).catch { error in
-            print("Error removing torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.actionDelegate.removeTorrents(self.contextMenuTorrents(), andData: true)
     }
     
     @IBAction func revealInFinderSelected(_ sender: NSMenuItem) {
@@ -241,6 +223,7 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     
     @IBAction func doubleClick(_ sender: NSTableView) {
         self.openClickedTorrent()
+        // TODO(cdzombak): show bottom panel
     }
     
     @IBAction func setLocationSelected(_ sender: NSMenuItem) {

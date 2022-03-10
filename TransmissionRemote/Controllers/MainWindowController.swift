@@ -2,7 +2,14 @@ import Cocoa
 import PromiseKit
 import TransmissionRemoteCore
 
-class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldDelegate {
+protocol TorrentActionsDelegate: AnyObject {
+    func startTorrents(_: [Torrent])
+    func startTorrentsNow(_: [Torrent])
+    func stopTorrents(_: [Torrent])
+    func removeTorrents(_: [Torrent], andData: Bool)
+}
+
+class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldDelegate, TorrentActionsDelegate {
     
     @IBOutlet weak var panelSwithcer: NSSegmentedControl!
     @IBOutlet weak var startTorrentButton: NSToolbarItem!
@@ -25,6 +32,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         self.torrentDetailsPane = self.horizontalSplit.splitViewItems[1]
         self.serverDetailsPane = self.verticalSplit.splitViewItems[0]
         self.torrentsListController = self.horizontalSplit.splitViewItems[0].viewController as? TorrentsListController
+        self.torrentsListController.actionDelegate = self
         self.torrentDetailsPane.minimumThickness = 300
         self.torrentDetailsPane.canCollapse = true
         self.serverDetailsPane.minimumThickness = 200
@@ -105,19 +113,11 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     }
     
     @IBAction func startTorrents(_ sender: NSToolbarItem) {
-        let selectedTorrents = self.torrentsListController.getSelectedTorrents()
-        Api.startTorrents(by: selectedTorrents.map { $0.id }).catch { error in
-            print("Error starting torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.startTorrents(self.torrentsListController.getSelectedTorrents())
     }
     
     @IBAction func stopTorrents(_ sender: NSToolbarItem) {
-        let selectedTorrents = self.torrentsListController.getSelectedTorrents()
-        Api.stopTorrents(by: selectedTorrents.map { $0.id }).catch { error in
-            print("Error stopping torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.stopTorrents(self.torrentsListController.getSelectedTorrents())
     }
     
     // MARK: - Utils
@@ -170,27 +170,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     }
     
     func removeSelectedTorrents(withData: Bool) {
-        let selectedTorrents = self.torrentsListController.getSelectedTorrents()
-        if selectedTorrents.count < 1 {
-            return
-        }
-        
-        let alert = NSAlert()
-        alert.messageText = "Confirm Removal"
-        alert.informativeText = "This will remove \(selectedTorrents.count) \(selectedTorrents.count > 1 ? "torrents" : "torrent")\(withData ? " and delete all associated data" : "").\n\nYou cannot undo this action."
-        alert.alertStyle = .critical
-        alert.addButton(withTitle: "Cancel")
-        alert.addButton(withTitle: "Remove")
-        alert.buttons[1].hasDestructiveAction = true
-        let result = alert.runModal()
-        if (result != .alertSecondButtonReturn) {
-            return
-        }
-        
-        Api.removeTorrents(by: selectedTorrents.map { $0.id }, deleteData: withData).catch { error in
-            print("Error removing torrents: \(error)")
-        }
-        Service.shared.updateTorrents()
+        self.removeTorrents(self.torrentsListController.getSelectedTorrents(), andData: withData)
     }
     
     func openMagnetLink(_ link: String) {
@@ -205,6 +185,64 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
 		self.panelSwithcer.setSelected(false, forSegment: 1)
 		self.showPane(self.panelSwithcer)
 	}
+    
+    // MARK: TorrentActionsDelegate
+    
+    func startTorrents(_ torrents: [Torrent]) {
+        if torrents.count < 1 {
+            return
+        }
+        
+        Api.startTorrents(by: torrents.map { $0.id }).catch { error in
+            print("Error starting torrents: \(error)")
+        }
+        Service.shared.updateTorrents()
+    }
+    
+    func startTorrentsNow(_ torrents: [Torrent]) {
+        if torrents.count < 1 {
+            return
+        }
+        
+        Api.startTorrentsNow(by: torrents.map { $0.id }).catch { error in
+            print("Error starting-now torrents: \(error)")
+        }
+        Service.shared.updateTorrents()
+    }
+    
+    func stopTorrents(_ torrents: [Torrent]) {
+        if torrents.count < 1 {
+            return
+        }
+        
+        Api.stopTorrents(by: torrents.map { $0.id }).catch { error in
+            print("Error stopping torrents: \(error)")
+        }
+        Service.shared.updateTorrents()
+    }
+    
+    func removeTorrents(_ torrents: [Torrent], andData deleteData: Bool) {
+        if torrents.count < 1 {
+            return
+        }
+        
+        let alert = NSAlert()
+        alert.messageText = "Confirm Removal"
+        alert.informativeText = "This will remove \(torrents.count) \(torrents.count > 1 ? "torrents" : "torrent")\(deleteData ? " and delete all associated data" : "").\n\nYou cannot undo this action."
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: "Remove")
+        alert.buttons[1].hasDestructiveAction = true
+        let result = alert.runModal()
+        if (result != .alertSecondButtonReturn) {
+            return
+        }
+        
+        Api.removeTorrents(by: torrents.map { $0.id }, deleteData: deleteData).catch { error in
+            print("Error removing torrents: \(error)")
+        }
+        Service.shared.updateTorrents()
+    }
     
     // MARK: - Filtering torrent list
     
