@@ -1329,8 +1329,8 @@
                                                                     </gridCell>
                                                                     <gridCell row="3On-x3-yWh" column="j9Y-fE-AIm" id="Xc7-CM-cjr">
                                                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u66-J5-d8Z">
-                                                                            <rect key="frame" x="13" y="22" width="94" height="16"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Upload Speed:" id="CkY-7f-ujn">
+                                                                            <rect key="frame" x="15" y="22" width="92" height="16"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Upload speed:" id="CkY-7f-ujn">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2664,17 +2664,17 @@
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Ajz-YY-U2y">
-                        <rect key="frame" x="0.0" y="0.0" width="1655" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1689" height="175"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
-                                <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1689" height="151"/>
                                 <clipView key="contentView" id="Xfb-8Y-nfH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1689" height="151"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="" rowHeight="16" rowSizeStyle="automatic" headerView="yaJ-WN-ALX" viewBased="YES" id="HUT-rt-KUV">
-                                            <rect key="frame" x="0.0" y="0.0" width="1689" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1689" height="126"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
