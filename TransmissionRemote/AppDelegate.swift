@@ -127,6 +127,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     @IBAction func quitApp(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
     }
+    
+    @IBAction func newFromURL(_ sender: NSMenuItem) {
+        if let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController {
+            wndController.addLink(sender)
+        }
+    }
+    
+    @IBAction func newFromFile(_ sender: NSMenuItem) {
+        if let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController {
+            wndController.addTorrentFile(sender)
+        }
+    }
 	
 	// MARK: - Notifications
 	
