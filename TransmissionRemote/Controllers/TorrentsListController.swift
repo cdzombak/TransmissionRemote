@@ -223,7 +223,6 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     
     @IBAction func doubleClick(_ sender: NSTableView) {
         self.openClickedTorrent()
-        // TODO(cdzombak): show bottom panel
     }
     
     @IBAction func setLocationSelected(_ sender: NSMenuItem) {
