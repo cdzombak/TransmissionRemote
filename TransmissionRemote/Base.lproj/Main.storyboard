@@ -1414,8 +1414,8 @@
                                                                     </gridCell>
                                                                     <gridCell row="gtp-nw-zfg" column="Ekb-94-RKr" id="O1X-2b-BcV">
                                                                         <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QFq-Qz-7GO">
-                                                                            <rect key="frame" x="118" y="132" width="92" height="16"/>
-                                                                            <textFieldCell key="cell" selectable="YES" title="Multiline Label" id="gUb-m0-Wv8">
+                                                                            <rect key="frame" x="118" y="132" width="104" height="16"/>
+                                                                            <textFieldCell key="cell" selectable="YES" id="gUb-m0-Wv8">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
