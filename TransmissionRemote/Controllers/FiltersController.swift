@@ -37,32 +37,34 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
 		guard let statusChanges = notification.userInfo?["statChanges"] as? StagedChangeset<[TorrentFilter]> else { return }
         
 		if !dirChanges.isEmpty {
+            self.outlineView.beginUpdates()
 			for changeset in dirChanges {
-                self.outlineView.beginUpdates()
 				changeset.elementInserted.forEach { insert in
 					self.outlineView.insertItems(at: IndexSet([insert.element]), inParent: TorrentFilter.Category.downloadDirs)
 				}
 				changeset.elementUpdated.forEach { update in
-					//self.outlineView.reloadItem(changeset.data[update.element])
-                    self.outlineView.reloadData(forRowIndexes: IndexSet([update.element]), columnIndexes: IndexSet([0]))
+                    // offset because there are 2 headers and all status filters above this element
+                    // TODO(cdzombak): there must be a better way of doing this
+                    self.outlineView.reloadData(forRowIndexes: IndexSet([2 + TorrentFilter.Status.allCases.count + update.element]), columnIndexes: IndexSet([0]))
 				}
 				let deletes = changeset.elementDeleted.sorted { $0.element > $1.element }
 				deletes.forEach { delete in
 					self.outlineView.removeItems(at: IndexSet([delete.element]), inParent: TorrentFilter.Category.downloadDirs)
 				}
-                self.outlineView.endUpdates()
 			}
+            self.outlineView.endUpdates()
 		}
 		
 		if !statusChanges.isEmpty {
+            self.outlineView.beginUpdates()
 			for changeset in statusChanges {
-                self.outlineView.beginUpdates()
 				changeset.elementUpdated.forEach { update in
-					//self.outlineView.reloadItem(changeset.data[update.element])
-                    self.outlineView.reloadData(forRowIndexes: IndexSet([update.element]), columnIndexes: IndexSet([0]))
+                    // offset by 1 because there's a header
+                    // TODO(cdzombak): there must be a better way of doing this
+                    self.outlineView.reloadData(forRowIndexes: IndexSet([1+update.element]), columnIndexes: IndexSet([0]))
 				}
-                self.outlineView.endUpdates()
 			}
+            self.outlineView.endUpdates()
 		}
     }
     
