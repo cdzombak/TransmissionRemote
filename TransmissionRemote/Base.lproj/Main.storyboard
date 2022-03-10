@@ -20,11 +20,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="TransmissionRemote" id="1Xt-HY-uBw">
+                            <menuItem title="Transmission Remote" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="TransmissionRemote" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Transmission Remote" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About TransmissionRemote" id="5kV-Vb-QxS">
+                                        <menuItem title="About Transmission Remote" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -42,7 +42,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide TransmissionRemote" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Transmission Remote" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -60,7 +60,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit TransmissionRemote" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Transmission Remote" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -74,12 +74,12 @@
                                     <items>
                                         <menuItem title="Add from .torrent URL or magnet link" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
-                                                <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
+                                                <action selector="newFromURL:" target="Voe-Tx-rLC" id="GKz-rz-5K3"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open .torrent file" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
+                                                <action selector="newFromFile:" target="Voe-Tx-rLC" id="3Yk-m9-KIa"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -293,12 +293,14 @@
                                             <menu key="menu" id="DTU-W8-Gvy">
                                                 <items>
                                                     <menuItem state="on" image="NSAddTemplate" hidden="YES" id="KxX-SS-H4u"/>
-                                                    <menuItem title="Add from .torrent URL or magnet link" keyEquivalent="n" id="Kgq-h9-qce">
+                                                    <menuItem title="Add from .torrent URL or magnet link" id="Kgq-h9-qce">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="addLink:" target="B8D-0N-5wS" id="Vmw-8n-R7J"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Open .torrent file" keyEquivalent="o" id="igo-fD-tRc">
+                                                    <menuItem title="Open .torrent file" id="igo-fD-tRc">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="addTorrentFile:" target="B8D-0N-5wS" id="bSq-OH-FRZ"/>
                                                         </connections>
@@ -472,7 +474,7 @@ CA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-EO-eft">
-                                <rect key="frame" x="0.0" y="219" width="961" height="28"/>
+                                <rect key="frame" x="0.0" y="119" width="961" height="28"/>
                                 <view key="contentView" id="S0E-xR-QS7">
                                     <rect key="frame" x="0.0" y="0.0" width="961" height="28"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -553,13 +555,13 @@ CA
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="B11-iR-2b2">
-                                <rect key="frame" x="0.0" y="216" width="961" height="5"/>
+                                <rect key="frame" x="0.0" y="116" width="961" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mjb-w8-Ivd"/>
                                 </constraints>
                             </box>
                             <tabView type="noTabsNoBorder" initialItem="a8B-VJ-JK9" translatesAutoresizingMaskIntoConstraints="NO" id="2Eh-Fs-e1w">
-                                <rect key="frame" x="0.0" y="0.0" width="961" height="219"/>
+                                <rect key="frame" x="0.0" y="0.0" width="961" height="119"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="General" identifier="general" id="a8B-VJ-JK9">
@@ -1282,17 +1284,17 @@ CA
                                     </tabViewItem>
                                     <tabViewItem label="Peers" identifier="Peers" id="hjP-2H-B3l">
                                         <view key="view" id="emH-V5-kvb">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="219"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="119"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kb-o6-RrH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="219"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="119"/>
                                                     <clipView key="contentView" id="g4i-LW-7FR">
-                                                        <rect key="frame" x="1" y="1" width="959" height="217"/>
+                                                        <rect key="frame" x="1" y="1" width="959" height="117"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="bHs-Aa-7ZT" viewBased="YES" id="rwy-rJ-tQ2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="192"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="92"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2143,7 +2145,7 @@ CA
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Ajz-YY-U2y">
-                        <rect key="frame" x="0.0" y="0.0" width="1689" height="125"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1689" height="100"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
