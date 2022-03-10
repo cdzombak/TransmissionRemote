@@ -62,7 +62,7 @@ public class Settings {
             "refreshInterval": 5,
             "refreshIntervalWhenMinimized": 20,
             "deleteTorrentFile": false,
-            "torrentColumns": ["Name", "Size", "Progress", "Seeds", "Peers", "DownSpeed", "UpSpeed", "Eta", "Ratio"],
+            "torrentColumns": ["Name", "Size", "Progress", "Seeds", "Peers", "Status", "DownSpeed", "UpSpeed", "Eta", "Ratio"],
             "ClosingWindowQuitsApp": true
         ])
         
