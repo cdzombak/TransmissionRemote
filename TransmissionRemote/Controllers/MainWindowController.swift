@@ -171,6 +171,22 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     
     func removeSelectedTorrents(withData: Bool) {
         let selectedTorrents = self.torrentsListController.getSelectedTorrents()
+        if selectedTorrents.count < 1 {
+            return
+        }
+        
+        let alert = NSAlert()
+        alert.messageText = "Confirm Removal"
+        alert.informativeText = "This will remove \(selectedTorrents.count) \(selectedTorrents.count > 1 ? "torrents" : "torrent")\(withData ? " and all associated data" : "").\n\nYou cannot undo this action."
+        alert.alertStyle = .critical
+        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: "Remove")
+        alert.buttons[1].hasDestructiveAction = true
+        let result = alert.runModal()
+        if (result != .alertSecondButtonReturn) {
+            return
+        }
+        
         Api.removeTorrents(by: selectedTorrents.map { $0.id }, deleteData: withData).catch { error in
             print("Error removing torrents: \(error)")
         }
