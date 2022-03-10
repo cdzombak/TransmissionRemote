@@ -784,12 +784,12 @@
                                             <menu key="menu" id="DTU-W8-Gvy">
                                                 <items>
                                                     <menuItem state="on" image="NSAddTemplate" hidden="YES" id="KxX-SS-H4u"/>
-                                                    <menuItem title="Open .torrent file" id="igo-fD-tRc">
+                                                    <menuItem title="Open .torrent file" keyEquivalent="o" id="igo-fD-tRc">
                                                         <connections>
                                                             <action selector="addTorrentFile:" target="B8D-0N-5wS" id="bSq-OH-FRZ"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Open .torrent URL or magnet link" id="Kgq-h9-qce">
+                                                    <menuItem title="Add from .torrent URL or magnet link" keyEquivalent="n" id="Kgq-h9-qce">
                                                         <connections>
                                                             <action selector="addLink:" target="B8D-0N-5wS" id="Vmw-8n-R7J"/>
                                                         </connections>
@@ -832,7 +832,7 @@
                                     <popUpButton key="view" verticalHuggingPriority="750" id="oKG-S1-eBW">
                                         <rect key="frame" x="0.0" y="14" width="53" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="remove" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="N3x-oz-PIB" id="eZ6-o0-Ihz">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="popUpButtonCell:9fo-jJ-MCK:image" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="N3x-oz-PIB" id="eZ6-o0-Ihz">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="7Bn-1P-tRt">
@@ -2668,13 +2668,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
-                                <rect key="frame" x="0.0" y="0.0" width="1689" height="151"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
                                 <clipView key="contentView" id="Xfb-8Y-nfH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1689" height="151"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="" rowHeight="16" rowSizeStyle="automatic" headerView="yaJ-WN-ALX" viewBased="YES" id="HUT-rt-KUV">
-                                            <rect key="frame" x="0.0" y="0.0" width="1689" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1689" height="51"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
