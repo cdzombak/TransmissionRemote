@@ -29,10 +29,17 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
             .done { torrent in
                 self.torrent = torrent
                 self.savAsField.stringValue = self.torrent?.name ?? ""
+                var enableOutlineView = false
                 if let files = self.torrent?.files {
-                    self.filesTree = self.generateTree(from: files)
-                    self.calcSizes(for: self.filesTree)
-                    self.outlineView.reloadData()
+                    if files.count > 0 {
+                        enableOutlineView = true
+                        self.filesTree = self.generateTree(from: files)
+                        self.calcSizes(for: self.filesTree)
+                        self.outlineView.reloadData()
+                    }
+                }
+                if !enableOutlineView {
+                    self.outlineView.isEnabled = false
                 }
             }.catch { error in
                 if let wnd = self.view.window {
