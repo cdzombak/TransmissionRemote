@@ -140,17 +140,24 @@ class TorrentDetailsController: NSViewController, NSTableViewDataSource, NSTable
 		if torrent.addedDate > 0 {
 			let date = Date(timeIntervalSince1970: TimeInterval(torrent.addedDate))
 			self.addedOnLabel.stringValue = dateFormatter.string(from: date)
-		}
+        } else {
+            self.addedOnLabel.stringValue = "－"
+        }
 		
 		if torrent.doneDate > 0 {
 			let date = Date(timeIntervalSince1970: TimeInterval(torrent.doneDate))
 			self.completedOnLabel.stringValue = dateFormatter.string(from: date)
 		} else {
-			self.completedOnLabel.stringValue = ""
+			self.completedOnLabel.stringValue = "－"
 		}
 	
 		self.piecesLabel.stringValue = "\(torrent.pieceCount) × \(bytesFormatter.string(fromByteCount: torrent.pieceSize))"
-		self.commentLabel.stringValue = torrent.comment
+		
+        if torrent.comment != "" {
+            self.commentLabel.stringValue = torrent.comment
+        } else {
+            self.commentLabel.stringValue = "－"
+        }
 		
 		self.downloadedLabel.stringValue = bytesFormatter.string(fromByteCount: torrent.downloadedEver)
 		self.downloadSpeedLabel.stringValue = bytesFormatter.string(fromByteCount: torrent.rateDownload) + "/s"
@@ -168,18 +175,32 @@ class TorrentDetailsController: NSViewController, NSTableViewDataSource, NSTable
 			self.upLimitLabel.stringValue = "－"
 		}
 		
-		self.statusLabel.stringValue = torrent.getStatus().description
-		self.errorLabel.stringValue = torrent.errorString
+        self.statusLabel.stringValue = torrent.getStatus().description
+        
+        if torrent.errorString != "" {
+            self.errorLabel.stringValue = torrent.errorString
+        } else {
+            self.errorLabel.stringValue = "－"
+        }
+        
 		self.remainingLabel.stringValue = bytesFormatter.string(fromByteCount: torrent.leftUntilDone)
 		self.maxPeersLabel.stringValue = String(torrent.maxConnectedPeers)
 		
-		let lastActiveDate = Date(timeIntervalSince1970: TimeInterval(torrent.activityDate))
-		self.lastActiveLabel.stringValue = dateFormatter.string(from: lastActiveDate)
+        if torrent.activityDate > 0 {
+            let lastActiveDate = Date(timeIntervalSince1970: TimeInterval(torrent.activityDate))
+            self.lastActiveLabel.stringValue = dateFormatter.string(from: lastActiveDate)
+        } else {
+            self.lastActiveLabel.stringValue = "－"
+        }
 		
 		if let tracker = torrent.trackerStats.first {
 			self.trackerLabel.stringValue = tracker.host
-			let date = Date(timeIntervalSince1970: TimeInterval(tracker.nextAnnounceTime))
-			self.trackerUpdateOnLabel.stringValue = dateFormatter.string(from: date)
+            if (tracker.nextAnnounceTime > 0) {
+                let date = Date(timeIntervalSince1970: TimeInterval(tracker.nextAnnounceTime))
+                self.trackerUpdateOnLabel.stringValue = dateFormatter.string(from: date)
+            } else {
+                self.trackerUpdateOnLabel.stringValue = "－"
+            }
 		}
 	}
 	
