@@ -23,6 +23,8 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
         
         self.peerLimitField.integerValue = Service.shared.session?.peerLimitPerTorrent ?? 20
         
+        self.updateDestDirs()
+        
         self.parseTorrent(source: self.source)
             .done { torrent in
                 self.torrent = torrent
@@ -51,15 +53,7 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     @objc func torrentsUpdated(_ notification: Notification) {
         if self.destination.numberOfItems == 0 {
-			if Service.shared.dirFilters.count > 0 {
-				self.destination.addItems(withObjectValues: Service.shared.dirFilters.map { $0.name })
-			} else if let session = Service.shared.session {
-				self.destination.addItem(withObjectValue: session.downloadDir)
-			}
-			
-			if self.destination.numberOfItems > 0 {
-				self.destination.selectItem(at: 0)
-			}
+            self.updateDestDirs()
         }
     }
     
@@ -97,8 +91,6 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
                 NSAlert.showError(error, for: wnd)
             }
         }
-        
-        
     }
     
     @IBAction func cancelAction(_ sender: NSButton) {
@@ -211,6 +203,18 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     
     // MARK: - Utils
+    
+    func updateDestDirs() {
+        if Service.shared.dirFilters.count > 0 {
+            self.destination.addItems(withObjectValues: Service.shared.dirFilters.map { $0.name })
+        } else if let session = Service.shared.session {
+            self.destination.addItem(withObjectValue: session.downloadDir)
+        }
+        
+        if self.destination.numberOfItems > 0 {
+            self.destination.selectItem(at: 0)
+        }
+    }
     
     func generateTree(from list: [TorrentFile]) -> TreeNode {
         var root = TreeNode(name: "", size: 0)
