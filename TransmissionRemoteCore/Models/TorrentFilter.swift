@@ -9,7 +9,7 @@ public class TorrentFilter: Mergeable, CustomStringConvertible {
     
     public enum Category: String, CaseIterable {
         case statuses = "Statuses"
-        case downloadDirs = "Download dirs"
+        case downloadDirs = "Download Directories"
     }
     
     public enum Status: String, CaseIterable {
