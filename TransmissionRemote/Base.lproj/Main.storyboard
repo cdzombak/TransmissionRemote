@@ -74,12 +74,12 @@
                                     <items>
                                         <menuItem title="Add from .torrent URL or magnet link" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
-                                                <action selector="newFromURL:" target="Voe-Tx-rLC" id="TR6-SD-UKp"/>
+                                                <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open .torrent file" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="newFromFile:" target="Voe-Tx-rLC" id="plR-yS-3b2"/>
+                                                <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -467,12 +467,12 @@ CA
         <scene sceneID="Tgt-oB-xGF">
             <objects>
                 <viewController id="Qgt-Wq-Vab" customClass="TorrentDetailsController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="85h-QI-kOr">
-                        <rect key="frame" x="0.0" y="0.0" width="961" height="272"/>
+                    <view key="view" misplaced="YES" id="85h-QI-kOr">
+                        <rect key="frame" x="0.0" y="0.0" width="961" height="247"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-EO-eft">
-                                <rect key="frame" x="0.0" y="244" width="961" height="28"/>
+                                <rect key="frame" x="0.0" y="219" width="961" height="28"/>
                                 <view key="contentView" id="S0E-xR-QS7">
                                     <rect key="frame" x="0.0" y="0.0" width="961" height="28"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -553,13 +553,13 @@ CA
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="B11-iR-2b2">
-                                <rect key="frame" x="0.0" y="241" width="961" height="5"/>
+                                <rect key="frame" x="0.0" y="216" width="961" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mjb-w8-Ivd"/>
                                 </constraints>
                             </box>
                             <tabView type="noTabsNoBorder" initialItem="a8B-VJ-JK9" translatesAutoresizingMaskIntoConstraints="NO" id="2Eh-Fs-e1w">
-                                <rect key="frame" x="0.0" y="0.0" width="961" height="244"/>
+                                <rect key="frame" x="0.0" y="0.0" width="961" height="219"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="General" identifier="general" id="a8B-VJ-JK9">
@@ -1282,17 +1282,17 @@ CA
                                     </tabViewItem>
                                     <tabViewItem label="Peers" identifier="Peers" id="hjP-2H-B3l">
                                         <view key="view" id="emH-V5-kvb">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="38"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="219"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kb-o6-RrH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="38"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="219"/>
                                                     <clipView key="contentView" id="g4i-LW-7FR">
-                                                        <rect key="frame" x="1" y="1" width="959" height="36"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <rect key="frame" x="1" y="1" width="959" height="217"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="bHs-Aa-7ZT" viewBased="YES" id="rwy-rJ-tQ2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="11"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="192"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1311,7 +1311,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="PeerHost" id="O81-Zu-1g9" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="11" y="1" width="197" height="16"/>
+                                                                                <rect key="frame" x="1" y="1" width="197" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bYD-v4-UPu">
@@ -1348,7 +1348,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView id="Qqb-rW-qVQ" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="211" y="1" width="83" height="16"/>
+                                                                                <rect key="frame" x="201" y="1" width="83" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-rN-RMW">
@@ -1372,43 +1372,6 @@ CA
                                                                             </tableCellView>
                                                                         </prototypeCellViews>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="PeerCountry" width="106" minWidth="10" maxWidth="3.4028234663852886e+38" id="M8p-Gh-iRO">
-                                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Country">
-                                                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </tableHeaderCell>
-                                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Hmq-c4-DpP">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                                        <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerCountry" id="2dW-h9-lYv" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="297" y="1" width="106" height="16"/>
-                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                                <subviews>
-                                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tVb-pH-D8y">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="106" height="16"/>
-                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Country" id="G2Q-bl-ByG">
-                                                                                            <font key="font" metaFont="system"/>
-                                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                                        </textFieldCell>
-                                                                                    </textField>
-                                                                                </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="tVb-pH-D8y" firstAttribute="top" secondItem="2dW-h9-lYv" secondAttribute="top" id="cjo-Vb-CSb"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="tVb-pH-D8y" secondAttribute="trailing" constant="2" id="eQs-AW-tcg"/>
-                                                                                    <constraint firstItem="tVb-pH-D8y" firstAttribute="leading" secondItem="2dW-h9-lYv" secondAttribute="leading" constant="2" id="lPb-wi-zN1"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="tVb-pH-D8y" secondAttribute="bottom" id="z5z-u8-WOg"/>
-                                                                                </constraints>
-                                                                                <connections>
-                                                                                    <outlet property="textField" destination="tVb-pH-D8y" id="WFW-EL-3zO"/>
-                                                                                </connections>
-                                                                            </tableCellView>
-                                                                        </prototypeCellViews>
-                                                                    </tableColumn>
                                                                     <tableColumn identifier="PeerClient" width="210" minWidth="10" maxWidth="3.4028234663852886e+38" id="58I-vc-WRt">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Client">
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1422,7 +1385,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="PeerClient" id="cym-E2-uhA" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="406" y="1" width="210" height="16"/>
+                                                                                <rect key="frame" x="287" y="1" width="210" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TOR-hs-i7M">
@@ -1459,7 +1422,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="PeerFlags" id="HyD-Vv-yZz" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="619" y="1" width="64" height="16"/>
+                                                                                <rect key="frame" x="500" y="1" width="64" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6qK-li-W4b">
@@ -1496,7 +1459,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="PeersHave" id="Vv3-2a-RHl" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="686" y="1" width="64" height="16"/>
+                                                                                <rect key="frame" x="567" y="1" width="64" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L72-dt-QdO">
@@ -1533,7 +1496,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="PeerUpSpeed" id="lzB-GS-taE" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="753" y="1" width="85" height="16"/>
+                                                                                <rect key="frame" x="634" y="1" width="85" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-cR-FMr">
@@ -1570,7 +1533,7 @@ CA
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="PeerDownSpeed" id="PeZ-mL-T8x" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="841" y="1" width="97" height="16"/>
+                                                                                <rect key="frame" x="722" y="1" width="97" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-Wd-gU0">
@@ -1606,7 +1569,7 @@ CA
                                                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
-                                                    <tableHeaderView key="headerView" id="bHs-Aa-7ZT">
+                                                    <tableHeaderView key="headerView" wantsLayer="YES" id="bHs-Aa-7ZT">
                                                         <rect key="frame" x="0.0" y="0.0" width="959" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </tableHeaderView>
