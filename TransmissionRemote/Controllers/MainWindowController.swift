@@ -241,15 +241,22 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         alert.addButton(withTitle: "Cancel")
         alert.addButton(withTitle: "Remove")
         alert.buttons[1].hasDestructiveAction = true
-        let result = alert.runModal()
-        if (result != .alertSecondButtonReturn) {
+        
+        guard let wnd = self.window else {
+            print("MainWindowController's self.window is nil")
             return
         }
         
-        Api.removeTorrents(by: torrents.map { $0.id }, deleteData: deleteData).catch { error in
-            print("Error removing torrents: \(error)")
+        alert.beginSheetModal(for: wnd) { result in
+            if (result != .alertSecondButtonReturn) {
+                return
+            }
+            
+            Api.removeTorrents(by: torrents.map { $0.id }, deleteData: deleteData).catch { error in
+                print("Error removing torrents: \(error)")
+            }
+            Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     func reannounce(_ torrents: [Torrent]) {
