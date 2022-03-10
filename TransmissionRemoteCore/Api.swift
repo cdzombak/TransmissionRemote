@@ -205,6 +205,16 @@ public class Api {
             .map { (wrapper: Empty) in }
     }
     
+    public static func reannounce(by ids: [Int]) -> Promise<Void> {
+        let arguments: [String: Any] = [
+            "ids": ids
+        ]
+        
+        return self.createRequest(method: "torrent-reannounce", arguments: arguments)
+            .then(on: self.queue, self.make)
+            .map { (wrapper: Empty) in }
+    }
+    
     public static func stopTorrents(by ids: [Int]) -> Promise<Void> {
         let arguments: [String: Any] = [
             "ids": ids

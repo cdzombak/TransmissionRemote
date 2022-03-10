@@ -2671,17 +2671,17 @@ CA
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Ajz-YY-U2y">
-                        <rect key="frame" x="0.0" y="0.0" width="1689" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1689" height="125"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
-                                <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1689" height="101"/>
                                 <clipView key="contentView" id="Xfb-8Y-nfH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1689" height="101"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="" rowHeight="16" rowSizeStyle="automatic" headerView="yaJ-WN-ALX" viewBased="YES" id="HUT-rt-KUV">
-                                            <rect key="frame" x="0.0" y="0.0" width="1689" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1689" height="76"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3459,6 +3459,12 @@ CA
                                     </menuItem>
                                 </items>
                             </menu>
+                        </menuItem>
+                        <menuItem title="Ask tracker for more peers" id="6q7-qT-G0u" userLabel="Ask Tracker for More Peers">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="reannounceSelected:" target="kH5-bb-4fW" id="d96-Cp-omh"/>
+                            </connections>
                         </menuItem>
                     </items>
                     <connections>

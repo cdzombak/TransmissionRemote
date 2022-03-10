@@ -202,6 +202,10 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         self.actionDelegate.removeTorrents(self.contextMenuTorrents(), andData: true)
     }
     
+    @IBAction func reannounceSelected(_ sender: NSMenuItem) {
+        self.actionDelegate.reannounce(self.contextMenuTorrents())
+    }
+    
     @IBAction func revealInFinderSelected(_ sender: NSMenuItem) {
         guard let torrent = self.contextMenuTorrents().first else { return }
         guard let wnd = self.view.window else { return }

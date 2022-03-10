@@ -7,6 +7,7 @@ protocol TorrentActionsDelegate: AnyObject {
     func startTorrentsNow(_: [Torrent])
     func stopTorrents(_: [Torrent])
     func removeTorrents(_: [Torrent], andData: Bool)
+    func reannounce(_: [Torrent])
 }
 
 class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldDelegate, TorrentActionsDelegate {
@@ -240,6 +241,17 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         
         Api.removeTorrents(by: torrents.map { $0.id }, deleteData: deleteData).catch { error in
             print("Error removing torrents: \(error)")
+        }
+        Service.shared.updateTorrents()
+    }
+    
+    func reannounce(_ torrents: [Torrent]) {
+        if torrents.count < 1 {
+            return
+        }
+        
+        Api.reannounce(by: torrents.map { $0.id }).catch { error in
+            print("Error reannouncing torrents: \(error)")
         }
         Service.shared.updateTorrents()
     }
