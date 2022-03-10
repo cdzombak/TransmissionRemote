@@ -301,7 +301,7 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
             if let magnet = Magnet(link) {
                 return Promise.value(Torrent(name: magnet.dn, files: []))
             } else {
-                return Promise(error: CocoaError.error("Error parsing magnet link"))
+                return Promise.value(Torrent(name: link, files: []))
             }
         }
     }
