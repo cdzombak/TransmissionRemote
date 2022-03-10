@@ -50,8 +50,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         self.stopTorrentButton.isEnabled = false
         self.removeTorrentButton.isEnabled = false
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtons(_:)), name: .selectedTorrentsChanged, object: nil)
-		// TODO: Fix enabling/disabling toolbar buttons after changing state of selected torrent (without changing selection)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtons(_:)), name: .updateTorrents, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtonsSoon(_:)), name: .updateTorrents, object: nil)
     }
 
     override func awakeFromNib() {
@@ -75,6 +74,14 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         self.startTorrentButton.isEnabled = stoppedCount > 0
         self.stopTorrentButton.isEnabled = stoppedCount != selectedTorrents.count
         self.removeTorrentButton.isEnabled = selectedTorrents.count > 0
+    }
+    
+    @objc func updateToolbarButtonsSoon(_ notification: Notification) {
+        // this is a hack: it allows the list view's torrents to be updated by the notification first,
+        // since we fetch the view's selected torrents in order to update toolbar state
+        DispatchQueue.main.async() {
+            self.updateToolbarButtons(notification)
+        }
     }
     
     @IBAction func showPane(_ sender: NSSegmentedControl) {
