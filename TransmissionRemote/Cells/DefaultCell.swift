@@ -16,9 +16,13 @@ class TrackerCell: ConfigurableCell<Tracker> {
 			}
 			break
 		case .trackerUpdateIn:
-			let formatter = DateComponentsFormatter()
-			let interval = TimeInterval(item.nextAnnounceTime) - Date().timeIntervalSince1970
-			self.textField?.stringValue = formatter.string(from: interval) ?? ""
+            if item.nextAnnounceTime > 0 {
+                let formatter = DateComponentsFormatter()
+                let interval = TimeInterval(item.nextAnnounceTime) - Date().timeIntervalSince1970
+                self.textField?.stringValue = formatter.string(from: interval) ?? ""
+            } else {
+                self.textField?.stringValue = ""
+            }
 			break
 		case .trackerSeeds:
 			self.textField?.stringValue = item.seederCount > 0 ? String(item.seederCount) : ""
