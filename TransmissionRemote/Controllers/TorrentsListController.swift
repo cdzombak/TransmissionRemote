@@ -89,7 +89,7 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         let queuedCount = torrents.filter { $0.getStatus() == .downloadWait }.count
         
         self.startMenuItem.isEnabled = stoppedCount > 0
-        self.startNowMenuItem.isEnabled = queuedCount > 0
+        self.startNowMenuItem.isEnabled = queuedCount > 0 || stoppedCount > 0
         self.stopMenuItem.isEnabled = stoppedCount != torrents.count
         self.revealInFinderItem.isEnabled = torrents.count == 1
         self.renameItem.isEnabled = torrents.count == 1
