@@ -66,6 +66,12 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         }
     }
     
+    func windowWillClose(_ notification: Notification) {
+        if Settings.shared.closingWindowQuitsApp {
+            NSApp.terminate(nil)
+        }
+    }
+    
     // MARK: - Toolbar buttons actions
     
     @objc func updateToolbarButtons(_ notification: Notification) {
