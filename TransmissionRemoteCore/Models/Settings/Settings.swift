@@ -26,7 +26,7 @@ public class Settings {
     
     public var refreshIntervalWhenMinimized: Int = 0 {
         didSet {
-            Settings.defaults.set(self.refreshInterval, forKey: "refreshIntervalWhenMinimized")
+            Settings.defaults.set(self.refreshIntervalWhenMinimized, forKey: "refreshIntervalWhenMinimized")
         }
     }
     
