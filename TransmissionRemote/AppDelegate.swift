@@ -117,7 +117,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     }
     
     @IBAction func startAllTorrents(_ sender: NSMenuItem) {
-        Api.startTorrents(by: Service.shared.torrents.map { $0.id }).catch { error in
+        var torrentsToStart = Service.shared.torrents
+        if (Settings.shared.startAllExcludesFullySeeded) {
+            torrentsToStart = torrentsToStart.filter({ torrent in
+                let completelyDownloaded = torrent.leftUntilDone == 0 && torrent.totalSize > 0
+                if !completelyDownloaded {
+                    return true
+                }
+                guard let session = Service.shared.session else {
+                    return true
+                }
+                if !session.seedRatioLimited {
+                    return true
+                }
+                return torrent.uploadRatio < session.seedRatioLimit
+            })
+        }
+        
+        Api.startTorrents(by: torrentsToStart.map { $0.id }).catch { error in
             print("Starting all torrents failed: ", error)
         }
     }

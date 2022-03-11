@@ -56,6 +56,12 @@ public class Settings {
         }
     }
     
+    public var startAllExcludesFullySeeded: Bool = true {
+        didSet {
+            Settings.defaults.set(self.startAllExcludesFullySeeded, forKey: "startAllExcludesFullySeeded")
+        }
+    }
+    
     init() {
         UserDefaults.standard.register(defaults: [
             "authRequired": false,
@@ -63,7 +69,8 @@ public class Settings {
             "refreshIntervalWhenMinimized": 20,
             "deleteTorrentFile": false,
             "torrentColumns": ["Name", "Size", "Progress", "Seeds", "Peers", "Status", "DownSpeed", "UpSpeed", "Eta", "Ratio"],
-            "ClosingWindowQuitsApp": true
+            "ClosingWindowQuitsApp": true,
+            "startAllExcludesFullySeeded": true,
         ])
         
         self.connection = Settings.getConnection()
@@ -74,6 +81,7 @@ public class Settings {
         self.pathAssociations = Settings.getPathAssociations()
         self.torrentColumns = (Settings.defaults.array(forKey: "torrentColumns") as? [String]) ?? []
         self.closingWindowQuitsApp = Settings.defaults.bool(forKey: "ClosingWindowQuitsApp")
+        self.startAllExcludesFullySeeded = Settings.defaults.bool(forKey: "startAllExcludesFullySeeded")
     }
     
     private static func getConnection() -> Connection {
