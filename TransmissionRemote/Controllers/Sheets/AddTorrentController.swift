@@ -55,7 +55,8 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
     }
     
     override func viewWillDisappear() {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: .updateFileState, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .updateTorrents, object: nil)
     }
     
     @objc func torrentsUpdated(_ notification: Notification) {

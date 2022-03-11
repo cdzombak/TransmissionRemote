@@ -49,6 +49,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         self.startTorrentButton.isEnabled = false
         self.stopTorrentButton.isEnabled = false
         self.removeTorrentButton.isEnabled = false
+        
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtons(_:)), name: .selectedTorrentsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtonsSoon(_:)), name: .updateTorrents, object: nil)
     }

@@ -55,9 +55,9 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTorrents(_:)), name: .updateTorrents, object: nil)
     }
     
-//    override func viewDidDisappear() {
-//        NotificationCenter.default.removeObserver(self)
-//    }
+    override func viewDidDisappear() {
+        NotificationCenter.default.removeObserver(self, name: .updateTorrents, object: nil)
+    }
     
     // MARK: - Notification handlers
     
