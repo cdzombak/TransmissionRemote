@@ -46,7 +46,11 @@ class TorrentCell: ConfigurableCell<Torrent> {
             }
             break
         case .ratio:
-            self.textField?.stringValue = String(format: "%.1f", torrent.uploadRatio)
+            if torrent.uploadRatio >= 0.0 {
+                self.textField?.stringValue = String(format: "%.1f", torrent.uploadRatio)
+            } else {
+                self.textField?.stringValue = ""
+            }
             break
         case .queuePosition:
             self.textField?.stringValue = String(torrent.queuePosition)
