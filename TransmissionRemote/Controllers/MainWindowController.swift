@@ -238,9 +238,9 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         alert.messageText = "Confirm Removal"
         alert.informativeText = "This will remove \(torrents.count) \(torrents.count > 1 ? "torrents" : "torrent")\(deleteData ? " and delete all associated data" : ", leaving associated data on disk").\n\nYou cannot undo this action."
         alert.alertStyle = .critical
-        alert.addButton(withTitle: "Cancel")
         alert.addButton(withTitle: "Remove")
-        alert.buttons[1].hasDestructiveAction = true
+        alert.addButton(withTitle: "Cancel")
+        alert.buttons[0].hasDestructiveAction = true
         
         guard let wnd = self.window else {
             print("MainWindowController's self.window is nil")
@@ -248,7 +248,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         }
         
         alert.beginSheetModal(for: wnd) { result in
-            if (result != .alertSecondButtonReturn) {
+            if (result != .alertFirstButtonReturn) {
                 return
             }
             
