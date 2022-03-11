@@ -16,6 +16,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     @IBOutlet weak var startTorrentButton: NSToolbarItem!
     @IBOutlet weak var stopTorrentButton: NSToolbarItem!
     @IBOutlet weak var removeTorrentButton: NSToolbarItem!
+    @IBOutlet weak var activityIndicator: NSProgressIndicator!
     
     var verticalSplit: NSSplitViewController!
     var horizontalSplit: NSSplitViewController!
@@ -23,6 +24,9 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     var torrentDetailsPane: NSSplitViewItem!
     var torrentsListController: TorrentsListController!
     var filterTask: DispatchWorkItem?
+    
+    private var currentRequests = 0
+    private var showingToolbarCustomizationSheet = false
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -49,9 +53,28 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         self.startTorrentButton.isEnabled = false
         self.stopTorrentButton.isEnabled = false
         self.removeTorrentButton.isEnabled = false
+        self.activityIndicator.isDisplayedWhenStopped = false
+        self.activityIndicator.stopAnimation(nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtons(_:)), name: .selectedTorrentsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateToolbarButtonsSoon(_:)), name: .updateTorrents, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(apiRequestStarted(_:)), name: .requestStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(apiRequestFinished(_:)), name: .requestFinished, object: nil)
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("NSMenuItemSelectedNotification"), object: nil, queue: nil) { [weak self] note in
+            if (note.userInfo?["MenuItem"] as? NSMenuItem)?.action == #selector(NSWindow.runToolbarCustomizationPalette(_:)) {
+                self?.showingToolbarCustomizationSheet = true
+                self?.activityIndicator.isDisplayedWhenStopped = true
+            }
+        }
+    }
+    
+    func windowDidEndSheet(_ notification: Notification) {
+        if showingToolbarCustomizationSheet {
+            activityIndicator.isDisplayedWhenStopped = false
+        }
+        showingToolbarCustomizationSheet = false
     }
 
     override func awakeFromNib() {
@@ -88,6 +111,21 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         // since we fetch the view's selected torrents in order to update toolbar state
         DispatchQueue.main.async() {
             self.updateToolbarButtons(notification)
+        }
+    }
+    
+    @objc func apiRequestStarted(_ notification: Notification) {
+        currentRequests += 1
+        if currentRequests == 1 {
+            activityIndicator.startAnimation(nil)
+        }
+    }
+    
+    @objc func apiRequestFinished(_ notification: Notification) {
+        currentRequests -= 1
+        if currentRequests <= 0 {
+            currentRequests = 0
+            activityIndicator.stopAnimation(nil)
         }
     }
     

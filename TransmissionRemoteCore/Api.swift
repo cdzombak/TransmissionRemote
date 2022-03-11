@@ -35,7 +35,9 @@ public class Api {
     }
     
     private static func make<T>(_ request: URLRequest) -> Promise<T> where T: Codable {
+        DispatchQueue.main.async { NotificationCenter.default.post(name: .requestStarted, object: nil) }
         return URLSession.shared.dataTask(.promise, with: request).then(on: self.queue) { data, response -> Promise<T> in
+            DispatchQueue.main.async { NotificationCenter.default.post(name: .requestFinished, object: nil) }
             guard let response = response as? HTTPURLResponse else { return Promise(error: self.genError("Network error", suggestion: "Unknown response type")) }
             guard response.statusCode != 409 else {
                 if let idHeader = response.allHeaderFields["X-Transmission-Session-Id"] as? String {

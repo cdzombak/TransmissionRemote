@@ -405,7 +405,7 @@ CA
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="784E8030-9E59-4B37-A2FA-38D810167396" label="Custom View" paletteLabel="Custom View" sizingBehavior="auto" id="sME-7Y-SuU">
+                                <toolbarItem implicitItemIdentifier="784E8030-9E59-4B37-A2FA-38D810167396" label="Search" paletteLabel="Search" title="Search" sizingBehavior="auto" id="sME-7Y-SuU">
                                     <nil key="toolTip"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="TEo-XK-eex">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
@@ -420,6 +420,13 @@ CA
                                         </connections>
                                     </searchField>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="B16AF069-F972-4B53-A035-5C2896CAD9A0" label="Activity Indicator" paletteLabel="Activity Indicator" tag="-1" title="Activity Indicator" sizingBehavior="auto" id="Rgt-4a-G0U">
+                                    <nil key="toolTip"/>
+                                    <progressIndicator key="view" maxValue="100" indeterminate="YES" controlSize="small" style="spinning" id="HMI-fJ-cTI">
+                                        <rect key="frame" x="40" y="14" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </progressIndicator>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="m5K-ZY-Fzk"/>
@@ -427,6 +434,7 @@ CA
                                 <toolbarItem reference="KUz-U2-QKP"/>
                                 <toolbarItem reference="e2Q-1R-xxB"/>
                                 <toolbarItem reference="Rh9-2Y-Vlx"/>
+                                <toolbarItem reference="Rgt-4a-G0U"/>
                                 <toolbarItem reference="jub-k8-SPz"/>
                                 <toolbarItem reference="sME-7Y-SuU"/>
                                 <toolbarItem reference="3bw-XO-s5I"/>
@@ -438,6 +446,7 @@ CA
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="activityIndicator" destination="HMI-fJ-cTI" id="glj-45-fhK"/>
                         <outlet property="panelSwithcer" destination="rXr-PJ-KM0" id="dXb-cX-0ir"/>
                         <outlet property="removeTorrentButton" destination="Rh9-2Y-Vlx" id="qLE-kh-7Jt"/>
                         <outlet property="startTorrentButton" destination="KUz-U2-QKP" id="2KJ-Pj-vdm"/>

@@ -8,4 +8,6 @@ public extension Notification.Name {
     static let updateFilters = Notification.Name("UpdateFilters")
     static let updateSelectedTorrent = Notification.Name("UpdateSelectedTorrent")
     static let refreshIntervalChanged = Notification.Name("RefreshIntervalChanged")
+    static let requestStarted = Notification.Name("APIResuestStarted")
+    static let requestFinished = Notification.Name("APIResuestFinished")
 }
