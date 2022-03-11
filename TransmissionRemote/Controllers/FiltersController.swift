@@ -27,7 +27,8 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
     }
     
     override func viewDidDisappear() {
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: .updateTorrents, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .updateFilters, object: nil)
     }
     
     // MARK: - Notification handlers
