@@ -18,16 +18,16 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+		if !NSApplication.underUITest {
+			self.tableView.autosaveName = "TorrentsTable"
+		}
+        
         self.torrentsDS = CollectionArrayDataSource<Torrent>(collectionView: self.tableView, array: [Torrent]())
         self.torrentsDS?.selectionChanged = { indices in
             let torrents = indices.map { self.torrentsDS?.item(at: IndexPath(item: $0, section: 0)) }.compactMap { $0 }
             NotificationCenter.default.post(name: .selectedTorrentsChanged, object: nil, userInfo: ["torrents": torrents])
         }
-        
-		if !NSApplication.underUITest {
-			self.tableView.autosaveName = "TorrentsTable"
-		}
-		
         self.torrentsDS?.setSortPredicates([
             .name: { $0.name.caseInsensitiveCompare($1.name) == .orderedAscending },
             .size: { $0.sizeWhenDone < $1.sizeWhenDone },
@@ -62,23 +62,8 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     // MARK: - Notification handlers
     
     @objc func reloadTorrents(_ notification: Notification) {
-		// FIXME
         guard let torrents = notification.userInfo?["torrents"] as? [Torrent] else { return }
-		let changes = self.torrentsDS?.setData(torrents)
-		//print("==================================================")
-		//print(changes)
-		
-//        if let changeset = changes?.first {
-//			changeset.elementUpdated.forEach { replace in
-//                replace.element
-//				if changeset.data[replace.element].differenceIdentifier == replace.oldItem.differenceIdentifier
-//					&& replace.newItem.isFinished()
-//					&& !replace.oldItem.isFinished()
-//				{
-//					UNUserNotificationCenter.current().showDownloadedNotification(for: replace.newItem)
-//				}
-//			}
-//		}
+		self.torrentsDS?.setData(torrents)
     }
     
     // MARK: - NSMenuDelegate
