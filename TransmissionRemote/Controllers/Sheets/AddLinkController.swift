@@ -37,7 +37,7 @@ class AddLinkController: NSViewController {
     // MARK: - Utils
     
     func isValid(url: String) -> Bool {
-        if url.hasSuffix(".torrent") || url.starts(with: "magnet:") {
+        if url.hasSuffix(".torrent") || url.starts(with: "magnet:") || url.contains("/torrent/download/") {
             return true
         } else {
             return false
