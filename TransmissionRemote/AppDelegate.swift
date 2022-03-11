@@ -43,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         let icon = NSImage(named: "menubar_icon")
-        statusItem.image = icon
+        icon?.isTemplate = true
+        statusItem.button?.image = icon
         statusItem.menu = self.statusMenu
 		
 		if #available(OSX 10.14, *) {
@@ -129,14 +130,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     }
     
     @IBAction func newFromURL(_ sender: NSMenuItem) {
-        if let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController {
-            wndController.addLink(sender)
+        NSApp.activate(ignoringOtherApps: true)
+        DispatchQueue.main.async {
+            if let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController {
+                wndController.addLink(sender)
+            }
         }
     }
     
     @IBAction func newFromFile(_ sender: NSMenuItem) {
-        if let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController {
-            wndController.addTorrentFile(sender)
+        NSApp.activate(ignoringOtherApps: true)
+        DispatchQueue.main.async {
+            if let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController {
+                wndController.addTorrentFile(sender)
+            }
         }
     }
 	
