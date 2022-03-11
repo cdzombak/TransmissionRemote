@@ -237,7 +237,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
         let alert = NSAlert()
         alert.messageText = "Confirm Removal"
         alert.informativeText = "This will remove \(torrents.count) \(torrents.count > 1 ? "torrents" : "torrent")\(deleteData ? " and delete all associated data" : ", leaving associated data on disk").\n\nYou cannot undo this action."
-        alert.alertStyle = .critical
+        alert.alertStyle = deleteData ? .critical : .warning
         alert.addButton(withTitle: "Remove")
         alert.addButton(withTitle: "Cancel")
         alert.buttons[0].hasDestructiveAction = true
