@@ -32,7 +32,7 @@ public class Settings {
     
     public var deleteTorrentFile: Bool = false {
         didSet {
-            Settings.defaults.set(self.refreshInterval, forKey: "deleteTorrentFile")
+            Settings.defaults.set(self.deleteTorrentFile, forKey: "deleteTorrentFile")
         }
     }
     
