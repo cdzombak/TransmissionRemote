@@ -92,6 +92,11 @@ public class Service {
     }
     
     public func updateTorrents() {
+        guard let session = self.session else {
+            print("Error: Service.session is missing when updateTorrents is called")
+            return
+        }
+        
         Api.getTorrents().done { torrents in
             self.torrents = torrents
 			self.updateFilters()
@@ -101,7 +106,23 @@ public class Service {
                 self.indexPromise = self.updateIndex()
             }
             
-            NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
+            let totalDownload = self.torrents.map { $0.rateDownload }.reduce(0, +)
+            let totalUpload = self.torrents.map { $0.rateUpload }.reduce(0, +)
+            let stats = AggregateStats(
+                serverVersion: session.version,
+                freeSpace: session.freeSpace,
+                downSpeed: totalDownload,
+                upSpeed: totalUpload
+            )
+            
+            NotificationCenter.default.post(
+                name: .updateTorrents,
+                object: nil,
+                userInfo: [
+                    "torrents": self.currentFilter.filteredTorrents,
+                    "stats": stats,
+                ]
+            )
         }.catch { error in
             self.torrents = []
             self.updateFilters()

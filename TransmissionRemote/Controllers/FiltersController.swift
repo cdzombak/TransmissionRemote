@@ -69,19 +69,11 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
     }
     
     @objc func torrentsUpdated(_ notification: Notification) {
-        guard let session = Service.shared.session else { return }
-        guard let torrents = notification.userInfo?["torrents"] as? [Torrent] else { return }
-        
-        let formatter = ByteCountFormatter()
-        formatter.countStyle = .file
-        
-        let totalDownload = torrents.map { $0.rateDownload }.reduce(0, +)
-        let totalUpload = torrents.map { $0.rateUpload }.reduce(0, +)
-        
-        self.server.stringValue = "Transmission " + session.version
-        self.freeSpace.stringValue = formatter.string(fromByteCount: session.freeSpace)
-        self.download.stringValue = formatter.string(fromByteCount: totalDownload) + "/s"
-        self.upload.stringValue = formatter.string(fromByteCount: totalUpload) + "/s"
+        guard let stats = notification.userInfo?["stats"] as? AggregateStats else { return }
+        self.server.stringValue = stats.server
+        self.freeSpace.stringValue = stats.freeSpaceFormatted
+        self.download.stringValue = stats.downloadSpeedFormatted
+        self.upload.stringValue = stats.uploadSpeedFormatted
     }
     
     // MARK: - NSOutlineViewDataSource

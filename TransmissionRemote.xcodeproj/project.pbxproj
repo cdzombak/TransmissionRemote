@@ -100,6 +100,7 @@
 		7AF5B578236604BC00603A4F /* UNCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5B577236604BC00603A4F /* UNCenter.swift */; };
 		7AFB99692285FE38002BF723 /* InterfaceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */; };
 		7AFB996B22872146002BF723 /* PathsSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB996A22872146002BF723 /* PathsSettingsController.swift */; };
+		93CE0E8127DAD01F00EF4C6C /* AggregateStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CE0E8027DAD01F00EF4C6C /* AggregateStats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +241,7 @@
 		7AFB99662285D829002BF723 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceIdentifiers.swift; sourceTree = "<group>"; };
 		7AFB996A22872146002BF723 /* PathsSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathsSettingsController.swift; sourceTree = "<group>"; };
+		93CE0E8027DAD01F00EF4C6C /* AggregateStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregateStats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +402,7 @@
 				7A90D8772233ACB600FE04C2 /* Tracker.swift */,
 				7A3071D3225BED960078E970 /* Peer.swift */,
 				7A997C042296F2290047F6A5 /* Magnet.swift */,
+				93CE0E8027DAD01F00EF4C6C /* AggregateStats.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				7A6AF44722B1305E00FEBF82 /* ArrayMerge.swift in Sources */,
 				7A6AF43C22B1301900FEBF82 /* Response.swift in Sources */,
 				7A6AF44122B1301900FEBF82 /* Peer.swift in Sources */,
+				93CE0E8127DAD01F00EF4C6C /* AggregateStats.swift in Sources */,
 				7A6AF43D22B1301900FEBF82 /* TreeNode.swift in Sources */,
 				7A6AF44822B1307F00FEBF82 /* Notifications.swift in Sources */,
 				7A540C9022B519EB00287942 /* Spotlight.swift in Sources */,

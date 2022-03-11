@@ -7,6 +7,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     
     @IBOutlet weak var columnsMenu: NSMenuItem!
     @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var downStatMenuItem: NSMenuItem!
+    @IBOutlet weak var upStatMenuItem: NSMenuItem!
     
     var appLaunched = false
     var magnetLinkToOpen: String? = nil
@@ -40,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
 		}
         
         NotificationCenter.default.addObserver(self, selector: #selector(connectionSettingsUpdated(_:)), name: .connectionSettingsUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(torrentsUpdated(_:)), name: .updateTorrents, object: nil)
         
         self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         let icon = NSImage(named: "menubar_icon")
@@ -145,6 +148,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
                 wndController.addTorrentFile(sender)
             }
         }
+    }
+    
+    @objc func torrentsUpdated(_ notification: Notification) {
+        guard let stats = notification.userInfo?["stats"] as? AggregateStats else { return }
+        
+        self.downStatMenuItem.title = "Download: " + stats.downloadSpeedFormatted
+        self.upStatMenuItem.title = "Upload: " + stats.uploadSpeedFormatted
     }
 	
 	// MARK: - Notifications

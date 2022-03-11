@@ -217,7 +217,9 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Transmission_Remote" customModuleProvider="target">
                     <connections>
                         <outlet property="columnsMenu" destination="EJl-us-anr" id="Iqa-wW-d1S"/>
+                        <outlet property="downStatMenuItem" destination="UVw-aX-BSS" id="bfQ-vN-Iaf"/>
                         <outlet property="statusMenu" destination="LbP-5A-bom" id="RPi-Pq-nWr"/>
+                        <outlet property="upStatMenuItem" destination="9Da-cN-3Hk" id="pLo-dG-Sa2"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -230,7 +232,13 @@
                                 <action selector="openMainWindow:" target="Voe-Tx-rLC" id="sJX-SX-GqE"/>
                             </connections>
                         </menuItem>
-                        <menuItem isSeparatorItem="YES" id="vUY-1A-Vi3"/>
+                        <menuItem isSeparatorItem="YES" id="73d-wF-wPh"/>
+                        <menuItem title="Down — KB/s" enabled="NO" id="UVw-aX-BSS">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Up — KB/s" enabled="NO" id="9Da-cN-3Hk">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
                         <menuItem title="Start all torrents" id="FkM-cC-5cT">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -500,7 +508,7 @@ CA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-EO-eft">
-                                <rect key="frame" x="0.0" y="169" width="961" height="28"/>
+                                <rect key="frame" x="0.0" y="94" width="961" height="28"/>
                                 <view key="contentView" id="S0E-xR-QS7">
                                     <rect key="frame" x="0.0" y="0.0" width="961" height="28"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -581,13 +589,13 @@ CA
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="B11-iR-2b2">
-                                <rect key="frame" x="0.0" y="166" width="961" height="5"/>
+                                <rect key="frame" x="0.0" y="91" width="961" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mjb-w8-Ivd"/>
                                 </constraints>
                             </box>
                             <tabView type="noTabsNoBorder" initialItem="a8B-VJ-JK9" translatesAutoresizingMaskIntoConstraints="NO" id="2Eh-Fs-e1w">
-                                <rect key="frame" x="0.0" y="0.0" width="961" height="169"/>
+                                <rect key="frame" x="0.0" y="0.0" width="961" height="94"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="General" identifier="general" id="a8B-VJ-JK9">
@@ -1310,17 +1318,17 @@ CA
                                     </tabViewItem>
                                     <tabViewItem label="Peers" identifier="Peers" id="hjP-2H-B3l">
                                         <view key="view" id="emH-V5-kvb">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="169"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="94"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kb-o6-RrH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="169"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="94"/>
                                                     <clipView key="contentView" id="g4i-LW-7FR">
-                                                        <rect key="frame" x="1" y="1" width="959" height="167"/>
+                                                        <rect key="frame" x="1" y="1" width="959" height="92"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="bHs-Aa-7ZT" viewBased="YES" id="rwy-rJ-tQ2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="142"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="67"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2170,7 +2178,7 @@ CA
         <scene sceneID="CqA-kP-crN">
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="Ajz-YY-U2y">
+                    <view key="view" id="Ajz-YY-U2y">
                         <rect key="frame" x="0.0" y="0.0" width="1689" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -2420,7 +2428,7 @@ CA
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                                 <tableColumn identifier="UpSpeed" width="92" minWidth="10" maxWidth="3.4028234663852886e+38" id="eFf-hN-9Ew">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Up speed">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Up Speed">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
